@@ -53,6 +53,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20),
@@ -67,10 +70,12 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     title: onboardingData[index]['title']!,
                     description: onboardingData[index]['description']!,
                     imageUrl: onboardingData[index]['imageUrl']!,
+                    screenHeight: screenHeight,
+                    screenWidth: screenWidth,
                   );
                 },
                 options: CarouselOptions(
-                  height: MediaQuery.of(context).size.height,
+                  height: screenHeight * 0.75,
                   autoPlay: false,
                   enlargeCenterPage: true,
                   enableInfiniteScroll: false,
@@ -102,37 +107,38 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 );
               }),
             ),
-            const SizedBox(height: 25),
-          Padding(
-          padding: _currentIndex == onboardingData.length - 1
-              ? const EdgeInsets.only(bottom: 50)
-              : const EdgeInsets.only(bottom: 0),
-          child: StyledButton(
-            onPressed: () {
-              if (_currentIndex == onboardingData.length - 1) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (ctx) => const Loginscreen(),
-                  ),
-                );
-              } else {
-                _nextPage();
-              }
-            },
-            child: _currentIndex == onboardingData.length - 1
-                ? const WhiteText('Get Started')
-                : const WhiteText('Next'),
-          ),
-        ),
-
+            const SizedBox(height: 10),
+            Padding(
+              padding: _currentIndex == onboardingData.length - 1
+                  ? const EdgeInsets.only(bottom: 50)
+                  : const EdgeInsets.only(bottom: 0),
+              child: StyledButton(
+                onPressed: () {
+                  if (_currentIndex == onboardingData.length - 1) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => const Loginscreen(),
+                      ),
+                    );
+                  } else {
+                    _nextPage();
+                  }
+                },
+                child: _currentIndex == onboardingData.length - 1
+                    ? const WhiteText('Get Started')
+                    : const WhiteText('Next'),
+              ),
+            ),
             if (_currentIndex < onboardingData.length - 1)
               SkipButton(
                 onPressed: () {
                   setState(() {
-                      Navigator.push(context, MaterialPageRoute(
-                        builder: (ctx) => const Loginscreen(),
-                      ));
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (ctx) => const Loginscreen(),
+                        ));
                   });
                 },
                 child: const StyledText('Skip'),
@@ -148,11 +154,15 @@ class OnboardingPage extends StatelessWidget {
   final String title;
   final String description;
   final String imageUrl;
+  final double screenHeight;
+  final double screenWidth;
 
   const OnboardingPage({
     required this.title,
     required this.description,
     required this.imageUrl,
+    required this.screenHeight,
+    required this.screenWidth,
     super.key,
   });
 
@@ -166,11 +176,11 @@ class OnboardingPage extends StatelessWidget {
           child: Image.asset(
             imageUrl,
             fit: BoxFit.cover,
-            width: 250,
-            height: 300.0,
+            width: screenWidth * 0.6,
+            height: screenHeight * 0.4,
           ),
         ),
-        const SizedBox(height: 40),
+        SizedBox(height: screenHeight * 0.05),
         StyledHeading(title),
         const SizedBox(height: 10),
         Padding(

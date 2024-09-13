@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food/screens/errorUserScreen.dart';
+import 'package:food/screens/welcomeScreen.dart';
 import 'package:food/shared/styled_button.dart';
 import 'package:food/shared/styled_text.dart';
 import 'package:food/theme.dart';
@@ -16,42 +18,50 @@ class VerificationScreen extends StatefulWidget {
 class _VerificationScreenState extends State<VerificationScreen> {
   @override
   Widget build(BuildContext context) {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+    
     return Scaffold(
       backgroundColor: AppColors.greyColor,
       body: Stack(
-        
         children: [
-          
           Align(
             alignment: Alignment.topLeft,
             child: Image.asset(
               'assets/images/login/vector.png',
-              width: 177,
-              height: 177,
+              width: screenWidth * 0.4,
+              height: screenHeight * 0.2,
               fit: BoxFit.contain,
             ),
           ),
-          const Align(
+          Align(
             alignment: Alignment.topLeft,
-            child:  Padding(
-              padding: EdgeInsets.only( top : 70 , left: 20),
-              child: CustomBackButton()), 
+            child: Padding(
+            padding: EdgeInsets.only(
+              top: screenHeight * 0.07,
+              left: screenWidth * 0.05,
+            ),
+              child: const CustomBackButton(),
+            ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 150, left: 16, right: 16),
+            padding: EdgeInsets.only(
+              top: screenHeight * 0.18,
+              left: screenWidth * 0.04,
+              right: screenWidth * 0.04,
+            ),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const StyledTitle('Verification'),
                 Padding(
-                  padding: const EdgeInsets.all(15),
+                  padding: EdgeInsets.all(screenHeight * 0.02),
                   child: WhiteText(
                       'We have sent a code to your mobile number ${widget.mobile}'),
                 ),
               ],
             ),
           ),
-
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -62,8 +72,11 @@ class _VerificationScreenState extends State<VerificationScreen> {
                   topRight: Radius.circular(20),
                 ),
               ),
-              height: MediaQuery.of(context).size.height * 0.63,
-              padding: const EdgeInsets.symmetric(vertical: 37, horizontal: 24),
+              height: screenHeight * 0.63,
+              padding: EdgeInsets.symmetric(
+                vertical: screenHeight * 0.05,
+                horizontal: screenWidth * 0.06,
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -86,7 +99,6 @@ class _VerificationScreenState extends State<VerificationScreen> {
                       ),
                     ],
                   ),
-                                    
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.max,
@@ -99,13 +111,13 @@ class _VerificationScreenState extends State<VerificationScreen> {
                         focusedBorderColor: Colors.transparent,
                         filled: true,
                         borderWidth: 1.0,
-                        fieldWidth: 80,
-                        textStyle: const TextStyle(
+                        fieldWidth: screenWidth * 0.17, 
+                        textStyle: TextStyle(
                             fontWeight: FontWeight.w700,
-                            fontSize: 20,
+                            fontSize: screenHeight * 0.025,
                             color: Colors.black),
-                        borderRadius: const BorderRadius.all(Radius.circular(12.0)),
-                        margin: const EdgeInsets.all(10),
+                        borderRadius: BorderRadius.all(Radius.circular(12.0)),
+                        margin: EdgeInsets.all(screenWidth * 0.025),
                         onCodeChanged: (String code) {},
                         onSubmit: (String verificationCode) {
                           showDialog(
@@ -126,10 +138,16 @@ class _VerificationScreenState extends State<VerificationScreen> {
                     mainAxisSize: MainAxisSize.max,
                     children: [
                       StyledButton(
-                          onPressed: () {
-                            // Handle verification here
-                          },
-                          child: const WhiteText('Verify')),
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (ctx) => WelcomeScreen(),
+                            ),
+                          );
+                        },
+                        child: const WhiteText('Verify'),
+                      ),
                     ],
                   ),
                 ],
