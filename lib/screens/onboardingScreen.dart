@@ -5,6 +5,7 @@ import 'package:food/screens/loginScreen.dart';
 import 'package:food/shared/styled_button.dart';
 import 'package:food/shared/styled_text.dart';
 import 'package:food/theme.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -113,8 +114,10 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                   ? const EdgeInsets.only(bottom: 50)
                   : const EdgeInsets.only(bottom: 0),
               child: StyledButton(
-                onPressed: () {
+                onPressed: () async {
                   if (_currentIndex == onboardingData.length - 1) {
+                      SharedPreferences prefs = await SharedPreferences.getInstance();
+                      await prefs.setBool('isFirstRun', false);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -131,18 +134,21 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               ),
             ),
             if (_currentIndex < onboardingData.length - 1)
-              SkipButton(
-                onPressed: () {
-                  setState(() {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (ctx) => const Loginscreen(),
-                        ));
-                  });
-                },
-                child: const StyledText('Skip'),
-              ),
+           SkipButton(
+            onPressed: () async {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setBool('isFirstRun', false);
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(
+                  builder: (ctx) => const Loginscreen(), 
+                ),
+              );
+            },
+            child: const StyledText('Skip'),
+          ),
+
           ],
         ),
       ),

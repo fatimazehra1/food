@@ -39,32 +39,30 @@ class _LoginscreenState extends State<Loginscreen> {
             ),
           ),
           Padding(
-          padding: EdgeInsets.only(
-            top: MediaQuery.of(context).size.height * 0.15, 
-            // left: MediaQuery.of(context).size.width * 0.04, 
-            // right: MediaQuery.of(context).size.width * 0.04, 
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              StyledTitle(
-                _selectedValue == 'employee'
-                    ? 'Log In As Employee'
-                    : _selectedValue == 'student'
-                        ? 'Log In As Student'
-                        : 'Log In As Patient',
-              ),
-              Padding(
-                padding: EdgeInsets.all(
-                  MediaQuery.of(context).size.height * 0.02, 
+            padding: EdgeInsets.only(
+              top: MediaQuery.of(context).size.height * 0.15,
+            ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                StyledTitle(
+                  _selectedValue == 'employee'
+                      ? 'Log In As Employee'
+                      : _selectedValue == 'student'
+                          ? 'Log In As Student'
+                          : 'Log In As Patient',
                 ),
-                child: const WhiteText(
-                  'Please log in as a patient using your existing account details.',
+                Padding(
+                  padding: EdgeInsets.all(
+                    MediaQuery.of(context).size.height * 0.02,
+                  ),
+                  child: const WhiteText(
+                    'Please log in as a patient using your existing account details.',
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
           Align(
             alignment: Alignment.bottomCenter,
             child: Container(
@@ -263,7 +261,8 @@ class _LoginscreenState extends State<Loginscreen> {
                                       response.email != null) {
                                     SharedPreferences prefs =
                                         await SharedPreferences.getInstance();
-
+                                    await prefs.setString(
+                                        'cardOrMrNo', cardNo ?? '');
                                     await prefs.setString(
                                         'name', response.employeeName ?? '');
                                     await prefs.setString(
@@ -302,6 +301,8 @@ class _LoginscreenState extends State<Loginscreen> {
                                         await SharedPreferences.getInstance();
 
                                     await prefs.setString(
+                                        'cardOrMrNo', cardNo ?? '');
+                                    await prefs.setString(
                                         'name', response.patientName ?? '');
                                     await prefs.setString(
                                         'mobile', response.mobile ?? '');
@@ -337,7 +338,8 @@ class _LoginscreenState extends State<Loginscreen> {
                                       response.email != null) {
                                     SharedPreferences prefs =
                                         await SharedPreferences.getInstance();
-
+                                    await prefs.setString(
+                                        'cardOrMrNo', cardNo ?? '');
                                     await prefs.setString(
                                         'name', response.studentName ?? '');
                                     await prefs.setString(

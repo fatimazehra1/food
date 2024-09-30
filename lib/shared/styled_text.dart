@@ -72,6 +72,25 @@ class WhiteHeading extends StatelessWidget {
     );
   }
 }
+class SelectedModifiers extends StatelessWidget {
+  const SelectedModifiers(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.015;
+
+    return  Text(
+        text,
+        style: GoogleFonts.sen(
+          textStyle: Theme.of(context).textTheme.titleLarge!.copyWith(
+                fontSize: fontSize, 
+              ),
+        ),
+      );
+  }
+}
 
 class whiteMediumText extends StatelessWidget {
   const whiteMediumText(this.text, {super.key});
@@ -191,6 +210,122 @@ class primaryBoldText extends StatelessWidget {
         textStyle: Theme.of(context).textTheme.bodyLarge!.copyWith(
               fontWeight: FontWeight.w700,
               fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+
+class Secondarylabel extends StatelessWidget {
+  const Secondarylabel(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.02;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+class PrimaryLabel extends StatelessWidget {
+  const PrimaryLabel(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.025;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.labelMedium!.copyWith(
+              fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+class PrimaryTitle extends StatelessWidget {
+  const PrimaryTitle(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.02;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+              fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+class ProductTitle extends StatelessWidget {
+  const ProductTitle(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.017;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+              fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+
+class ProductDetailTitle extends StatelessWidget {
+  const ProductDetailTitle(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.027;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.labelSmall!.copyWith(
+              fontSize: fontSize,
+            ),
+      ),
+    );
+  }
+}
+class DetailText extends StatelessWidget {
+  const DetailText(this.text, {super.key});
+
+  final String text;
+
+  @override
+  Widget build(BuildContext context) {
+    double fontSize = MediaQuery.of(context).size.height * 0.014;
+
+    return Text(
+      text,
+      style: GoogleFonts.sen(
+        textStyle: Theme.of(context).textTheme.bodyMedium!.copyWith(
+              fontSize: fontSize, 
             ),
       ),
     );
