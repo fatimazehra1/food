@@ -8,7 +8,7 @@ class AppColors {
   static Color whiteColor = const Color.fromARGB(255, 255, 255, 255);
   static Color buttonColor = const Color.fromRGBO(209, 56, 49, 1);
   static Color greyColor = const Color.fromRGBO(18, 18, 35, 1);
-  static Color greyAccent = const Color.fromRGBO(240, 245, 250, 1);
+  static Color greyAccent = const Color.fromARGB(255, 229, 230, 231);
   //----------------
   static Color primaryAccent = const Color.fromRGBO(120, 14, 14, 1);
   static Color successColor = const Color.fromRGBO(9, 149, 110, 1);
@@ -20,33 +20,45 @@ ThemeData primaryTheme = ThemeData(
   colorScheme: ColorScheme.fromSeed(seedColor: AppColors.primaryColor),
 
   textTheme: TextTheme(
-    bodyMedium: TextStyle(
-      color: AppColors.textColor,
-      fontSize: 15,
-    ),
-    headlineMedium: TextStyle(
-      color: AppColors.whiteColor,
-      fontSize: 30,
-      fontWeight: FontWeight.bold,
-      letterSpacing: 1,
-    ),
-    titleMedium: TextStyle(
-      color: AppColors.titleColor,
-      fontSize: 24,
-      fontWeight: FontWeight.w800,
-    ),
-    bodySmall: TextStyle(
-      color: AppColors.whiteColor,
-      fontSize: 16,
-    ),
-    titleSmall: TextStyle(
-        color: AppColors.titleColor, fontSize: 13, fontWeight: FontWeight.w200),
-    bodyLarge: TextStyle(color: AppColors.primaryColor, fontSize: 14),
-    titleLarge: TextStyle(
-        color: AppColors.whiteColor, fontSize: 20, fontWeight: FontWeight.w700),
-    headlineSmall: const TextStyle(
-        color: Colors.white, fontSize: 40, fontWeight: FontWeight.w900),
-  ),
+      bodyMedium: TextStyle(
+        color: AppColors.textColor,
+        fontSize: 15,
+      ),
+      headlineMedium: TextStyle(
+        color: AppColors.whiteColor,
+        fontSize: 30,
+        fontWeight: FontWeight.bold,
+        letterSpacing: 1,
+      ),
+      titleMedium: TextStyle(
+        color: AppColors.titleColor,
+        fontWeight: FontWeight.w800,
+      ),
+      bodySmall: TextStyle(
+        color: AppColors.whiteColor,
+        fontSize: 16,
+      ),
+      titleSmall: TextStyle(
+          color: AppColors.titleColor,
+          fontSize: 13,
+          fontWeight: FontWeight.w200),
+      bodyLarge: TextStyle(color: AppColors.primaryColor, fontSize: 14),
+      titleLarge: TextStyle(
+          color: AppColors.whiteColor,
+          fontSize: 20,
+          fontWeight: FontWeight.w700),
+      headlineSmall: const TextStyle(
+          color: Colors.white, fontSize: 40, fontWeight: FontWeight.w900),
+      labelMedium: TextStyle(
+        color: AppColors.titleColor,
+        fontWeight: FontWeight.w400
+      ),
+      labelSmall: 
+      TextStyle(
+        color: AppColors.titleColor,
+        fontWeight: FontWeight.w700
+      ),
+      ),
 
   //scaffold color
   // scaffoldBackgroundColor: AppColors.secondaryAccent,

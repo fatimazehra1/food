@@ -1,6 +1,6 @@
 class Employee {
-  final int? cardNo;  // Make cardNo nullable (int? instead of int)
-  final String? employeeName;  // Make other fields nullable as well
+  final int? cardNo; 
+  final String? employeeName;  
   final String? mobile;
   final String? address;
   final String? email;

@@ -13,9 +13,16 @@ class SelectAreaPopup extends StatefulWidget {
 }
 
 class _SelectAreaPopupState extends State<SelectAreaPopup> {
+  int _selectedDeliveryType = 0;
+
   Future<String?> getAddressFromPreferences() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.getString('address');
+  }
+
+  Future<void> saveDeliveryTypeToPreferences() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setInt('deliveryType', _selectedDeliveryType);
   }
 
   @override
@@ -24,7 +31,7 @@ class _SelectAreaPopupState extends State<SelectAreaPopup> {
     final screenHeight = MediaQuery.of(context).size.height;
 
     return AlertDialog(
-      content: Container(
+      content: SizedBox(
         width: screenWidth * 0.9, 
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -52,11 +59,13 @@ class _SelectAreaPopupState extends State<SelectAreaPopup> {
               activeFgColor: Colors.white,
               inactiveBgColor: AppColors.greyAccent,
               inactiveFgColor: AppColors.buttonColor,
-              initialLabelIndex: 0,
+              initialLabelIndex: _selectedDeliveryType,
               totalSwitches: 2,
-              labels: ['DELIVERY', 'PICKUP'],
+              labels: const ['DELIVERY', 'PICKUP'],
               onToggle: (index) {
-                print('switched to: $index');
+                setState(() {
+                  _selectedDeliveryType = index!;
+                });
               },
               customTextStyles: [
                 TextStyle(
@@ -90,10 +99,11 @@ class _SelectAreaPopupState extends State<SelectAreaPopup> {
       ),
       actions: [
         StyledButton(
-          onPressed: () {
-            Navigator.of(context).pop();
+          onPressed: () async {
+            await saveDeliveryTypeToPreferences(); 
+            Navigator.of(context).pop(); 
           },
-          child: WhiteText(
+          child: const WhiteText(
             'SELECT'
           ),
         ),

@@ -5,7 +5,7 @@ import 'package:food/models/student.dart';
 import 'package:food/service/api_service.dart';
 
 class AuthProvider with ChangeNotifier {
-  final ApiService _apiService = ApiService();  // Create an instance of ApiService
+  final ApiService _apiService = ApiService();  
 
   Employee? _employee;
   Patient? _patient;

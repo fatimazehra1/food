@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food/screens/HomeScreen.dart';
 import 'package:food/shared/styled_button.dart';
 import 'package:food/shared/styled_text.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -34,12 +35,15 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       const SizedBox(height: 20),
                       FutureBuilder<String?>(
                         future: getNameFromPreferences(),
-                        builder: (BuildContext context, AsyncSnapshot<String?> snapshot) {
-                          if (snapshot.connectionState == ConnectionState.waiting) {
+                        builder: (BuildContext context,
+                            AsyncSnapshot<String?> snapshot) {
+                          if (snapshot.connectionState ==
+                              ConnectionState.waiting) {
                             return const CircularProgressIndicator();
                           } else if (snapshot.hasError) {
                             return Text('Error: ${snapshot.error}');
-                          } else if (!snapshot.hasData || snapshot.data == null) {
+                          } else if (!snapshot.hasData ||
+                              snapshot.data == null) {
                             return const StyledHeading('Hello Guest!');
                           } else {
                             return StyledHeading('Hello ${snapshot.data}');
@@ -52,12 +56,19 @@ class _WelcomeScreenState extends State<WelcomeScreen> {
                       ),
                     ],
                   ),
-                ),
+                ), 
               ),
               Padding(
                 padding: const EdgeInsets.all(24.0),
                 child: StyledButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (ctx) => HomeScreen(),
+                      ),
+                    );
+                  },
                   child: const WhiteText('Continue'),
                 ),
               ),
